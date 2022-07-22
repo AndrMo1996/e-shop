@@ -7,9 +7,6 @@
         <link href="/css/app.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/css/slick.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
-
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     </head>
 
     <body>
@@ -60,7 +57,7 @@
                             </a>
                         </li>
                         <li class="user-bar__item">
-                            <a class="user-bar__link" href="#">
+                            <a class="user-bar__link" href={{ route('basket') }}>
                                 <img class="user-bar__img" src="/assets/img/basket.svg">
                             </a>
                         </li>

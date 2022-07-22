@@ -16,4 +16,11 @@ class Product extends Model
     public function attributes(){
         return $this->hasMany(AttributesSet::class);
     }
+
+    public function countTotalPrice(){
+        if(!is_null($this->pivot->count)){
+            return $this->pivot->count * $this->price;
+        }
+        return $this->price;
+    }
 }

@@ -253,7 +253,8 @@ li.slick-active button{
     margin-top: 30px;
 }
 
-.products-title{
+.products-title,
+.basket-title{
     padding: 15px 15px 15px;
     margin-bottom: 30px;
     border-bottom: 1px solid #CDCDCD;
@@ -393,11 +394,8 @@ li.slick-active button{
 }
 
 .pagination-list__item{
-    /*width: 35px;*/
-    /*height: 35px;*/
     padding: 4px 15px;
     border: transparent;
-    /*color: #C4C4C4;*/
 }
 
 .pagination-list__item{
@@ -461,7 +459,8 @@ li.slick-active button{
     margin-bottom: 10px;
 }
 
-.product-card__characteristics-item{
+.product-card__characteristics-item,
+.basket-list__item{
     padding: 15px 0 1px;
     color: #2F3035;
     border-bottom: 1px solid rgba(47, 48, 53, 0.2);
@@ -479,6 +478,63 @@ li.slick-active button{
 .about-info__title{
     margin-bottom: 25px;
 }
+
+/*CSS for Basket section*/
+.basket-total{
+    display: flex;
+    padding: 15px 10px 15px;
+    align-items: center;
+    justify-content: right;
+    border: 1px solid #CDCDCD;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+
+.basket-total__btn{
+    margin-left: 15px;
+    padding: 15px 15px;
+}
+
+.basket-product__title{
+    display: flex;
+    width: 500px;
+}
+
+.basket-product__title img{
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.basket-product__count,
+.basket-product__price,
+.basket-product__total-price{
+    display: flex;
+    width: 100px;
+}
+
+.basket-product__remove-btn,
+.basket-product__add-btn {
+    width: 20px;
+    height: 20px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+.basket-product__remove-btn{
+    background-color: red;
+}
+
+.basket-product__add-btn{
+    background-color: green;
+}
+
+
 
 /*CSS for Footer section*/
 .footer{
