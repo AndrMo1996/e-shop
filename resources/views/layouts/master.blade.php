@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Інтернет-магазин</title>
         <link href="/css/app.css" rel="stylesheet">
+        <link href="/css/login.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/css/slick.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     </head>
@@ -21,13 +22,15 @@
                         <ul class="navigation-bar">
                             <li class="navigation-bar__item categories">Каталог
                                 <ul class="categories-list">
-                                    @foreach($categories as $category)
+                                    @if(session()->has('categories'))
+                                    @foreach(session('categories') as $category)
                                         <li class="categories-list__item">
                                             <a href={{ route('category', $category->code) }}>
                                                 {{ $category->name }}
                                             </a>
                                         </li>
                                         @endforeach
+                                    @endif
                                 </ul>
                             </li>
                             <li class="navigation-bar__item">
@@ -52,9 +55,17 @@
                             </a>
                         </li>
                         <li class="user-bar__item">
-                            <a class="user-bar__link" href="#">
-                                <img class="user-bar__img" src="/assets/img/user.svg">
-                            </a>
+                            @guest
+                                <a class="user-bar__link" href="{{ route('login') }}">
+                                    <img class="user-bar__img" src="/assets/img/user.svg">
+                                </a>
+                            @endguest
+
+                            @auth
+                                <a class="user-bar__link" href="{{ route('logout-get') }}">
+                                    <img class="user-bar__img" src="/assets/img/logout.svg">
+                                </a>
+                            @endauth
                         </li>
                         <li class="user-bar__item">
                             <a class="user-bar__link" href={{ route('basket') }}>

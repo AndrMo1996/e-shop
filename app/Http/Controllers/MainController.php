@@ -9,8 +9,11 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function index(){
-        $products = Product::get();
         $categories = Category::get();
+        session(['categories' => $categories]);
+//        dd(session('categories'));
+
+        $products = Product::get();
         return view('home', compact('categories', 'products'));
     }
 

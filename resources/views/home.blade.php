@@ -1,7 +1,7 @@
-@extends('master', ['categories'])
+@extends('layouts.master', ['categories'])
 
 @section('content')
-    @include('banner')
+    @include('layouts.banner')
 
     @if(count($products) > 0)
         <div class="popular-products__section">
@@ -9,7 +9,7 @@
                 <h2 class="popular-products__title">Популярні товари</h2>
                 <div class="popular-products__slider">
                     @foreach($products as $product)
-                        @include('card', ['product'])
+                        @include('layouts.card', ['product'])
                     @endforeach
                 </div>
             </div>

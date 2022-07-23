@@ -1,4 +1,4 @@
-@extends('master', ['categories'])
+@extends('layouts.master', ['categories'])
 
 @section('content')
     <div class="breadcrumbs">

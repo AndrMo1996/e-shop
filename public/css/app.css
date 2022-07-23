@@ -490,9 +490,28 @@ li.slick-active button{
     margin-bottom: 25px;
 }
 
+.alert{
+    height: 50px;
+    padding-top: 10px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.alert.success{
+    background-color: #178534;
+}
+
+.alert.error{
+    background-color: #a1251f;
+}
+
 .basket-total__btn{
     margin-left: 15px;
     padding: 15px 15px;
+    background-color: #EFEFEF;
+    border: 1px solid #767676;
+    border-radius: 3px;
 }
 
 .basket-product__title{

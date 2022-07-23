@@ -1,0 +1,35 @@
+.login__inner,
+.register__inner{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form{
+    width: 400px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-input{
+    border: none;
+    border-bottom: 1px solid;
+    margin: 15px 0 15px;
+}
+
+.form-input:focus{
+    border: none;
+}
+.form-input:active{
+    border: none;
+}
+
+.register-link a,
+.login-link a{
+    color: #0c5460;
+}
+
