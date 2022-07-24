@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
@@ -58,9 +59,12 @@ class BasketController extends Controller
         }
 
         $order->products()->attach($productId);
-        $product = Product::find($productId);
+        if (Auth::check()){
+            $order->user_id = Auth::id();
+            $order->save();
+        }
 
-        return redirect()->route('category', $product->category->code);
+        return back();
     }
 
     public function removeProduct($productId){

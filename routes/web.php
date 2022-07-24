@@ -22,14 +22,30 @@ Auth::routes([
 
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout-get');
 
+Route::group([
+    'middleware' => 'auth',
+    'prefix'     => 'admin'
+], function() {
+    Route::group([
+        'middleware' => 'is_admin',
+    ], function (){
+        Route::get('/home', 'App\Http\Controllers\Admin\OrderController@index')->name('admin-home');
+    });
+});
+
 Route::get('/', 'App\Http\Controllers\MainController@index')->name('index');
 Route::get('/catalog/{category}', 'App\Http\Controllers\MainController@category')->name('category');
 Route::get('/catalog/{category}/{product}', 'App\Http\Controllers\MainController@product')->name('product');
 
-Route::get('/basket', 'App\Http\Controllers\BasketController@basket')->name('basket');
-Route::post('/basket/add/{id}', 'App\Http\Controllers\BasketController@addProductToBasket')->name('add-to-basket');
-Route::post('/basket/{id}/add', 'App\Http\Controllers\BasketController@addProduct')->name('basket-add');
-Route::post('/basket/{id}/remove', 'App\Http\Controllers\BasketController@removeProduct')->name('basket-remove');
-Route::get('/basket/order/make', 'App\Http\Controllers\BasketController@order')->name('order');
-Route::post('/basket/order/confirm', 'App\Http\Controllers\BasketController@confirmOrder')->name('confirm-order');
+Route::group([
+    'prefix' => 'basket'
+], function (){
+    Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
+    Route::post('/add/{id}', 'App\Http\Controllers\BasketController@addProductToBasket')->name('add-to-basket');
+    Route::post('/{id}/add', 'App\Http\Controllers\BasketController@addProduct')->name('basket-add');
+    Route::post('/{id}/remove', 'App\Http\Controllers\BasketController@removeProduct')->name('basket-remove');
+    Route::get('/order/make', 'App\Http\Controllers\BasketController@order')->name('order');
+    Route::post('/order/confirm', 'App\Http\Controllers\BasketController@confirmOrder')->name('confirm-order');
+});
+
 
