@@ -22,7 +22,7 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     protected function redirectTo(){
-        return route('admin-home');
+        return route('admin.home');
     }
     /**
      * Where to redirect users after login.

@@ -29,7 +29,13 @@ Route::group([
     Route::group([
         'middleware' => 'is_admin',
     ], function (){
-        Route::get('/home', 'App\Http\Controllers\Admin\OrderController@index')->name('admin-home');
+        Route::get('home', 'App\Http\Controllers\Admin\OrderController@index')->name('admin.home');
+        Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');
+        Route::get('category/{category}/product/create', 'App\Http\Controllers\Admin\ProductController@create')->name('product.create');
+        Route::get('category/{category}/product/{product}/edit', 'App\Http\Controllers\Admin\ProductController@edit')->name('product.edit');
+        Route::put('category/{category}/product/{product}', 'App\Http\Controllers\Admin\ProductController@update')->name('product.update');
+        Route::post('category/{category}/product', 'App\Http\Controllers\Admin\ProductController@store')->name('product.store');
+        Route::delete('product/{product}', 'App\Http\Controllers\Admin\ProductController@destroy')->name('product.destroy');
     });
 });
 
@@ -41,7 +47,6 @@ Route::group([
     'prefix' => 'basket'
 ], function (){
     Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
-    Route::post('/add/{id}', 'App\Http\Controllers\BasketController@addProductToBasket')->name('add-to-basket');
     Route::post('/{id}/add', 'App\Http\Controllers\BasketController@addProduct')->name('basket-add');
     Route::post('/{id}/remove', 'App\Http\Controllers\BasketController@removeProduct')->name('basket-remove');
     Route::get('/order/make', 'App\Http\Controllers\BasketController@order')->name('order');

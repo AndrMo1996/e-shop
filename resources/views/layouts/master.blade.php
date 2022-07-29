@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Інтернет-магазин</title>
+        <link href="/css/reset.css" rel="stylesheet">
         <link href="/css/app.css" rel="stylesheet">
         <link href="/css/login.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/css/slick.css"/>
@@ -68,8 +69,11 @@
                             @endauth
                         </li>
                         <li class="user-bar__item">
-                            <a class="user-bar__link" href={{ route('basket') }}>
+                            <a class="user-bar__link basket" href={{ route('basket') }}>
                                 <img class="user-bar__img" src="/assets/img/basket.svg">
+                                @if(session()->has('orderProductCount') && session('orderProductCount') > 0)
+                                    <p class="basket-count">{{ session('orderProductCount') }}</p>
+                                @endif
                             </a>
                         </li>
                     </ul>

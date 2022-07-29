@@ -1,0 +1,156 @@
+.content{
+    display: flex;
+}
+
+.content__inner{
+    margin-top: 25px;
+}
+
+.sidebar{
+    width: 300px;
+    height: 100vh;
+    background-color: rgb(8,21,46);
+    color: white;
+    padding: 20px 20px;
+}
+
+.logo-title{
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #C4C4C4;
+}
+
+.nav-menu{
+    margin-top: 15px;
+    color: #C4C4C4;
+}
+
+.nav-menu__item{
+    font-size: 20px;
+}
+
+.content-body{
+    width: 100%;
+    padding: 20px 20px;
+}
+
+.title{
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+
+.title-actions{
+    display: flex;
+    padding-bottom: 5px;
+}
+
+.title-actions__btn{
+    margin-left: 10px;
+}
+
+.content__inner{
+    display: flex;
+    justify-content: center;
+}
+
+.table{
+    margin-top: 30px;
+    width: 1250px;
+}
+
+.table-row{
+    display: flex;
+    align-items: center;
+    padding: 15px 0 1px;
+    color: #2F3035;
+    border-bottom: 1px solid rgba(47, 48, 53, 0.2);
+}
+
+.table-col{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.category__id,
+.product__id,
+.category__products-count{
+    width: 100px;
+}
+
+.category__code,
+.product__code{
+    width: 200px;
+}
+
+.category__name,
+.category__description,
+.product__name,
+.product__description{
+    width: 375px;
+    word-wrap: anywhere;
+}
+
+.table__actions{
+    width: 100px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.input-delete{
+    display: none;
+}
+
+.action__img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.header{
+    display: flex;
+    padding: 15px 0 1px;
+    color: black;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(47, 48, 53, 0.2);
+}
+
+.title-actions__btn{
+    padding: 5px 5px;
+    background-color: #EFEFEF;
+    border: 1px solid #767676;
+    border-radius: 3px;
+}
+
+.category-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.category-tabs{
+    display: flex;
+    justify-content: center;
+}
+
+.category-tabs__item{
+    padding: 10px 25px 10px;
+}
+
+.category-tabs__item-active{
+    border-radius: 5px;
+    background-color: #F0F0F4;
+}
+
+.category-content__item{
+    display: none;
+}
+
+.category-content__item-active{
+    display: block;
+}
+
+
+

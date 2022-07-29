@@ -47,26 +47,6 @@ class BasketController extends Controller
         return redirect()->route('basket');
     }
 
-    public function addProductToBasket($productId){
-        $categories = Category::get();
-
-        $orderId = session('orderId');
-        if (is_null($orderId)){
-            $order = Order::create();
-            session(['orderId' => $order->id]);
-        } else{
-            $order = Order::find($orderId);
-        }
-
-        $order->products()->attach($productId);
-        if (Auth::check()){
-            $order->user_id = Auth::id();
-            $order->save();
-        }
-
-        return back();
-    }
-
     public function removeProduct($productId){
         $orderId = session('orderId');
         $order = Order::find($orderId);
@@ -80,6 +60,8 @@ class BasketController extends Controller
                 $currentProduct->update();
             }
         }
+
+        session(['orderProductCount' => $order->products()->count()]);
 
         return redirect()->route('basket');
     }
@@ -102,6 +84,13 @@ class BasketController extends Controller
             $order->products()->attach($productId);
         }
 
-        return redirect()->route('basket');
+        if (Auth::check()){
+            $order->user_id = Auth::id();
+            $order->save();
+        }
+
+        session(['orderProductCount' => $order->products()->count()]);
+
+        return back();
     }
 }

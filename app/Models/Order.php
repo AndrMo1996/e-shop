@@ -14,6 +14,10 @@ class Order extends Model
         return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
     }
 
+    public function productsCount(){
+        return count($this->products);
+    }
+
     public function countTotalPrice(){
         $sum = 0;
 
