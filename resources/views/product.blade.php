@@ -41,13 +41,13 @@
                     <div class="product-card__characteristics">
                         <h3 class="product-card__characteristics_title">Характеристики:</h3>
                         <ul class="product-card__characteristics_list">
-                            @foreach($product->attributes as $attribute)
+                            @foreach($category->attributes as $attribute)
                                 <li class="product-card__characteristics-item">
                                     <div class="product-card__characteristic-name">
-                                        {{ $attribute->attribute->title }}
+                                        {{ $attribute->title }}
                                     </div>
                                     <div class="product-card__characteristic-value">
-                                        {{ $attribute->value }}
+                                        {{ $product->getAttributeValueById($attribute->id) }}
                                     </div>
                                 </li>
                             @endforeach

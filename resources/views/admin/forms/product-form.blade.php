@@ -50,6 +50,12 @@
                         <span>Image</span>
                         <input class="input-field" type="file" name="image" />
                     </label>
+                        @foreach($category->attributes as $attribute)
+                            <label for="attr_{{ $attribute->id }}">
+                                <span>{{ $attribute->title }}</span>
+                                <input class="input-field" type="text" name="attr_{{ $attribute->id }}" value="@isset($product){{ $product->getAttributeValueById($attribute->id) }}@endisset"/>
+                            </label>
+                        @endforeach
 {{--                    <label for="image">--}}
 {{--                        <span>Image</span>--}}
 {{--                        <div class="input-file">--}}

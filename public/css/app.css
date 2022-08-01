@@ -398,26 +398,20 @@ li.slick-active button{
 .pagination{
     width: 100%;
     margin-top: 25px;
-}
-
-.pagination-list{
     display: flex;
     justify-content: center;
 }
 
-.pagination-list__item.active{
+.page-item.active{
     padding: 4px 10px;
     border: 2px solid #1C62CD;
     color: #1C62CD
 }
 
-.pagination-list__item{
+.page-item{
     padding: 4px 15px;
     border: transparent;
-}
-
-.pagination-list__item{
-    margin: 0 10px;
+    margin: 0 5px;
 }
 
 /*CSS for Product section*/

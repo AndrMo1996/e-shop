@@ -22,7 +22,18 @@ class Product extends Model
     }
 
     public function attributes(){
-        return $this->hasMany(AttributesSet::class);
+        return $this->belongsToMany(Attribute::class)->withPivot('value')->withTimestamps();
+    }
+
+    public function getAttributeValueById($attributeId){
+        $value = '';
+
+        $attribute = $this->attributes()->where('attribute_id', $attributeId)->first();
+        if ($attribute){
+            $value = $attribute->pivot->value;
+        }
+
+        return $value;
     }
 
     public function countTotalPrice(){

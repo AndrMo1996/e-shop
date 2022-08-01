@@ -31,11 +31,18 @@ Route::group([
     ], function (){
         Route::get('home', 'App\Http\Controllers\Admin\OrderController@index')->name('admin.home');
         Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');
+
         Route::get('category/{category}/product/create', 'App\Http\Controllers\Admin\ProductController@create')->name('product.create');
         Route::get('category/{category}/product/{product}/edit', 'App\Http\Controllers\Admin\ProductController@edit')->name('product.edit');
         Route::put('category/{category}/product/{product}', 'App\Http\Controllers\Admin\ProductController@update')->name('product.update');
         Route::post('category/{category}/product', 'App\Http\Controllers\Admin\ProductController@store')->name('product.store');
         Route::delete('product/{product}', 'App\Http\Controllers\Admin\ProductController@destroy')->name('product.destroy');
+
+        Route::get('category/{category}/attribute/create', 'App\Http\Controllers\Admin\AttributeController@create')->name('attribute.create');
+        Route::get('category/{category}/attribute/{attribute}/edit', 'App\Http\Controllers\Admin\AttributeController@edit')->name('attribute.edit');
+        Route::put('category/{category}/attribute/{attribute}', 'App\Http\Controllers\Admin\AttributeController@update')->name('attribute.update');
+        Route::post('category/{category}/attribute', 'App\Http\Controllers\Admin\AttributeController@store')->name('attribute.store');
+        Route::delete('attribute/{attribute}', 'App\Http\Controllers\Admin\AttributeController@destroy')->name('attribute.destroy');
     });
 });
 

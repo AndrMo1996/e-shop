@@ -7,6 +7,7 @@
     <link href="/css/reset.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
     <link href="/css/form.css" rel="stylesheet">
+    <link href="/css/table.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/slick.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,7 +24,7 @@
             <li class="nav-menu__item">
                 <a href="#">Dashboard</a>
             </li>
-            <li class="nav-menu__item">
+            <li @routeactive('categor*')>
                 <a href="{{ route('category.index') }}">Catalog</a>
             </li>
             <li class="nav-menu__item">

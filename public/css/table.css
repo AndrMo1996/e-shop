@@ -1,0 +1,69 @@
+.table{
+    margin-top: 30px;
+    width: 1250px;
+}
+
+.header{
+    display: flex;
+    padding: 15px 0 1px;
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(47, 48, 53, 0.2);
+}
+
+.table-row{
+    display: flex;
+    align-items: center;
+    padding: 15px 0 1px;
+    color: #2F3035;
+    border-bottom: 1px solid rgba(47, 48, 53, 0.2);
+}
+
+.table-col{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.category__id,
+.product__id,
+.attribute__id,
+.attribute__required,
+.product__price,
+.category__products-count {
+    width: 100px;
+}
+
+.category__code,
+.attribute__code,
+.product__code{
+    width: 200px;
+}
+
+.category__name,
+.category__description,
+.attribute__name,
+.attribute__description,
+.product__name,
+.product__description{
+    width: 375px;
+    word-wrap: anywhere;
+}
+
+.table__actions{
+    width: 100px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.input-delete{
+    display: none;
+}
+
+.action__img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    cursor: pointer;
+}

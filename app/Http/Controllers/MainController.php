@@ -11,24 +11,20 @@ class MainController extends Controller
     public function index(){
         $categories = Category::get();
         session(['categories' => $categories]);
-//        dd(session('categories'));
-
-        $products = Product::get();
+        $products = Product::paginate(6);
         return view('home', compact('categories', 'products'));
     }
 
     public function category($categoryCode){
-        $categories = Category::get();
         $category = Category::where('code', $categoryCode)->first();
-//        dd($category->attributes);
-        return view('catalog', compact('category', 'categories'));
+        $products = Product::where('category_id', $category->id)->paginate(12);
+        return view('catalog', compact('category', 'products'));
     }
 
-    public function product($categoryCode, $productCode){
+    public function product(Category $category, $productCode){
         $categories = Category::get();
         $product = Product::where('code', $productCode)->first();
-//                dd($product->attributes);
-        return view('product', compact('categories', 'product'));
+        return view('product', compact('category', 'product'));
     }
 
 }

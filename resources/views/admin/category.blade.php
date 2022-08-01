@@ -6,7 +6,7 @@
             <h2 class="title-text">{{ $category->name }}</h2>
             <div class="title-actions">
                 <a class="title-actions__btn" href="{{ route('product.create', $category) }}">Add Product</a>
-                <a class="title-actions__btn">Add Attribute</a>
+                <a class="title-actions__btn" href="{{ route('attribute.create', $category) }}">Add Attribute</a>
             </div>
         </div>
         <div class="content__inner">

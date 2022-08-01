@@ -38,14 +38,31 @@ class ProductController extends Controller
      */
     public function store(Request $request, Category $category)
     {
+        $attributes = [];
+        $attributePrefix = 'attr_';
+
+        $params = $request->all();
+        unset($params['image']);
 
         if (null !== $request->file('image')){
             $path = $request->file('image')->store('products');
+            $params['image'] = $path;
         }
-        $params = $request->all();
-        $params['image'] = $path ?? '';
 
-        Product::create($params);
+        foreach ($params as $field => $value){
+            if(str_contains($field, $attributePrefix)){
+                unset($params[$field]);
+                $attributes[str_replace($attributePrefix, '', $field)] = [
+                    'value' => $value
+                ];
+            }
+        }
+
+        $product = Product::create($params);
+
+        foreach ($attributes as $id => $data) {
+            $product->attributes()->attach($id, $data);
+        }
         return redirect()->route('category.show', $category);
     }
 
@@ -80,7 +97,38 @@ class ProductController extends Controller
      */
     public function update(Request $request, Category $category, Product $product)
     {
-        $product->update($request->all());
+        $attributes = [];
+        $attributePrefix = 'attr_';
+
+        $params = $request->all();
+        unset($params['image']);
+
+        if (null !== $request->file('image')){
+            $path = $request->file('image')->store('products');
+            $params['image'] = $path;
+        }
+
+        foreach ($params as $field => $value){
+            if(str_contains($field, $attributePrefix)){
+                unset($params[$field]);
+                $attributes[str_replace($attributePrefix, '', $field)] = [
+                    'value' => $value
+                ];
+            }
+        }
+
+        $product->update($params);
+
+        foreach ($attributes as $id => $data) {
+            if ($product->attributes->contains($id)){
+                $currentAttribute = $product->attributes()->where('attribute_id', $id)->first()->pivot;
+                $currentAttribute->value = $data['value'];
+                $currentAttribute->update();
+            } else{
+                $product->attributes()->attach($id, $data);
+            }
+        }
+
         return redirect()->route('category.show', $category);
     }
 

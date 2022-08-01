@@ -1,6 +1,7 @@
 <ul class="table">
     <li class="table-row header">
         <div class="attribute__id">#</div>
+        <div class="attribute__code">Code</div>
         <div class="attribute__required">Required</div>
         <div class="attribute__name">Name</div>
         <div class="attribute__description">Description</div>
@@ -11,8 +12,11 @@
             <div class="attribute__id">
                 {{ $attribute->id }}
             </div>
-            <div class="attribute__required">
+            <div class="attribute__code">
                 {{ $attribute->code }}
+            </div>
+            <div class="attribute__required">
+                false
             </div>
             <div class="attribute__name">
                 <a class="category__link" href="">
@@ -23,10 +27,10 @@
                 {{ $attribute->code }}
             </div>
             <div class="table-col table__actions">
-                <a class="action-form__item" href="{{ route('category.edit', $category) }}">
+                <a class="action-form__item" href="{{ route('attribute.edit', [$category, $attribute]) }}">
                     <img class="action__img" src="/assets/img/edit.svg">
                 </a>
-                <form class="table__actions-form" action="{{ route('product.destroy', $category) }}" method="POST">
+                <form class="table__actions-form" action="{{ route('attribute.destroy', $category) }}" method="POST">
                     @csrf
                     <label class="action-form__item">
                         <img class="action__img" src="/assets/img/delete.svg">

@@ -31,9 +31,9 @@
 .form input.input-field,
 .form .textarea-field,
 .form .select-field{
-    /*box-sizing: border-box;*/
-    /*-webkit-box-sizing: border-box;*/
-    /*-moz-box-sizing: border-box;*/
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     border: 1px solid #C2C2C2;
     box-shadow: 1px 1px 4px #EBEBEB;
     -moz-box-shadow: 1px 1px 4px #EBEBEB;
@@ -47,7 +47,7 @@
 }
 .form .input-field:focus,
 .form .textarea-field:focus{
-    border: 1px solid #0C0;
+    border: 1px solid #111827;
 }
 
 .form .textarea-field{
@@ -58,7 +58,7 @@
 .form input[type=button]{
     border: none;
     padding: 8px 15px 8px 15px;
-    background: #FF8500;
+    background: #1F2937;
     color: #fff;
     box-shadow: 1px 1px 4px #DADADA;
     -moz-box-shadow: 1px 1px 4px #DADADA;
@@ -70,7 +70,7 @@
 
 .form input[type=submit]:hover,
 .form input[type=button]:hover{
-    background: #EA7B00;
+    background: #111827;
     color: #fff;
 }
 

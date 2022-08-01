@@ -4,6 +4,7 @@
         <div class="product__code">Code</div>
         <div class="product__name">Name</div>
         <div class="product__description">Description</div>
+        <div class="product__price">Price</div>
         <div class="table__actions">Actions</div>
     </li>
     @foreach($category->products as $product)
@@ -21,6 +22,9 @@
             </div>
             <div class="product__description">
                 {{ $product->description }}
+            </div>
+            <div class="product__price">
+                {{ $product->price }}
             </div>
             <div class="table-col table__actions">
                 <a class="action-form__item" href="{{ route('product.edit', [$category, $product]) }}">
