@@ -4,11 +4,12 @@
         <div class="product__code">Code</div>
         <div class="product__name">Name</div>
         <div class="product__description">Description</div>
+        <div class="product__count">Count</div>
         <div class="product__price">Price</div>
         <div class="table__actions">Actions</div>
     </li>
-    @foreach($category->products as $product)
-        <li class="table-row">
+    @foreach($products as $product)
+        <li class="table-row @if($product->trashed())deleted @endif">
             <div class="product__id">
                 {{ $product->id }}
             </div>
@@ -22,6 +23,9 @@
             </div>
             <div class="product__description">
                 {{ $product->description }}
+            </div>
+            <div class="product__count">
+                {{ $product->count }}
             </div>
             <div class="product__price">
                 {{ $product->price }}

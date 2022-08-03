@@ -26,47 +26,68 @@
                     @endisset
 
                     @csrf
-                    <input type="hidden" name="category_id" value="{{ $category->id }}" />
+                    <input type="hidden" name="category_id" value="{{ $category->id }}"/>
                     <label for="name">
                         <span>Name
                             <span class="required">*</span>
                         </span>
-                        <input class="input-field" type="text" name="name" value="@isset($product){{ $product->name }}@endisset" />
+                        <input class="input-field" type="text" name="name"
+                               value="@isset($product){{ $product->name }}@endisset"/>
                     </label>
 
                     <label for="code">
                         <span>Code
                             <span class="required">*</span>
                         </span>
-                        <input class="input-field" type="text" name="code" value="@isset($product){{ $product->code }}@endisset" />
+                        <input class="input-field" type="text" name="code"
+                               value="@isset($product){{ $product->code }}@endisset"/>
+                    </label>
+
+                    <label for="price">
+                        <span>Price
+                            <span class="required">*</span>
+                        </span>
+                        <input class="input-field number" type="text" name="price"
+                               value="@isset($product){{ $product->price }}@endisset"/>
+                    </label>
+
+                    <label for="count">
+                        <span>Count
+                            <span class="required">*</span>
+                        </span>
+                        <input class="input-field number" type="text" name="count"
+                               value="@isset($product){{ $product->count }}@endisset"/>
                     </label>
 
                     <label for="description">
                         <span>Description</span>
-                        <textarea name="description" class="textarea-field">@isset($product){{ $product->description }}@endisset</textarea>
+                        <textarea name="description" class="textarea-field">@isset($product)
+                                {{ $product->description }}
+                            @endisset</textarea>
                     </label>
 
                     <label for="image">
                         <span>Image</span>
-                        <input class="input-field" type="file" name="image" />
+                        <input class="input-field" type="file" name="image"/>
                     </label>
-                        @foreach($category->attributes as $attribute)
-                            <label for="attr_{{ $attribute->id }}">
-                                <span>{{ $attribute->title }}</span>
-                                <input class="input-field" type="text" name="attr_{{ $attribute->id }}" value="@isset($product){{ $product->getAttributeValueById($attribute->id) }}@endisset"/>
-                            </label>
-                        @endforeach
-{{--                    <label for="image">--}}
-{{--                        <span>Image</span>--}}
-{{--                        <div class="input-file">--}}
-{{--                            <label class="input-file__label">--}}
-{{--                                <i class="material-icons">attach_file</i>--}}
-{{--                                <span class="input-file__title">Добавить файл</span>--}}
-{{--                                <input type="file" name="image">--}}
-{{--                            </label>--}}
-{{--                        </div>--}}
-{{--                    </label>--}}
-                    <label><span> </span><input type="submit" value="Save" /></label>
+                    @foreach($category->attributes as $attribute)
+                        <label for="attr_{{ $attribute->id }}">
+                            <span>{{ $attribute->title }}</span>
+                            <input class="input-field" type="text" name="attr_{{ $attribute->id }}"
+                                   value="@isset($product){{ $product->getAttributeValueById($attribute->id) }}@endisset"/>
+                        </label>
+                    @endforeach
+                    {{--                    <label for="image">--}}
+                    {{--                        <span>Image</span>--}}
+                    {{--                        <div class="input-file">--}}
+                    {{--                            <label class="input-file__label">--}}
+                    {{--                                <i class="material-icons">attach_file</i>--}}
+                    {{--                                <span class="input-file__title">Добавить файл</span>--}}
+                    {{--                                <input type="file" name="image">--}}
+                    {{--                            </label>--}}
+                    {{--                        </div>--}}
+                    {{--                    </label>--}}
+                    <label><span> </span><input type="submit" value="Save"/></label>
                 </form>
             </div>
         </div>

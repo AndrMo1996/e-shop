@@ -103,7 +103,7 @@ class ProductController extends Controller
         $params = $request->all();
         unset($params['image']);
 
-        if (null !== $request->file('image')){
+        if ($request->has('image')){
             $path = $request->file('image')->store('products');
             $params['image'] = $path;
         }

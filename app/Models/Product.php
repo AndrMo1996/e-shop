@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'code',
         'name',
         'description',
         'image',
-        'category_id'
+        'category_id',
+        'count'
     ];
 
     public function category(){
@@ -23,6 +25,14 @@ class Product extends Model
 
     public function attributes(){
         return $this->belongsToMany(Attribute::class)->withPivot('value')->withTimestamps();
+    }
+
+    public function scopeByCode($query, $code){
+        return $query->where('code', $code);
+    }
+
+    public function isAvailable(){
+        return $this->count > 0;
     }
 
     public function getAttributeValueById($attributeId){

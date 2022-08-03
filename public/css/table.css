@@ -20,6 +20,10 @@
     border-bottom: 1px solid rgba(47, 48, 53, 0.2);
 }
 
+.table-row.deleted{
+    background-color: rgb(252,222,222);
+}
+
 .table-col{
     padding-left: 5px;
     padding-right: 5px;
@@ -27,9 +31,10 @@
 
 .category__id,
 .product__id,
+.product__price,
+.product__count,
 .attribute__id,
 .attribute__required,
-.product__price,
 .category__products-count {
     width: 100px;
 }

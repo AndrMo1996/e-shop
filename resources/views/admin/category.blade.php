@@ -17,7 +17,7 @@
                 </div>
                 <div class="category-content">
                     <div id="products" class="category-content__item category-content__item-active">
-                        @include('admin.tables.products', ['category'])
+                        @include('admin.tables.products', ['product'])
                     </div>
                     <div id="attributes" class="category-content__item">
                         @include('admin.tables.attributes', ['category'])

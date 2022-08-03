@@ -28,6 +28,26 @@
     color:red;
 }
 
+.input-field__inner{
+    display: flex;
+}
+
+.alert-error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    width: 250px;
+    height: fit-content;
+    padding: 7px;
+    border-radius: 5px;
+    text-align-all: center;
+    color: rgb(185,74,72);
+    border: 1px solid rgb(238,211,215);
+    background-color: rgb(242,222,222);
+}
+
+
 .form input.input-field,
 .form .textarea-field,
 .form .select-field{
@@ -45,6 +65,11 @@
     width: 55%;
     outline: none;
 }
+
+input.input-field.number{
+    width: 10%;
+}
+
 .form .input-field:focus,
 .form .textarea-field:focus{
     border: 1px solid #111827;

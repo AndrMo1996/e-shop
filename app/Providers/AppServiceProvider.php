@@ -31,6 +31,12 @@ class AppServiceProvider extends ServiceProvider
             ?>";
         });
 
+        Blade::directive('deleted', function($product){
+            return "<?php
+                echo product ? 'deleted': ''
+            ?>";
+        });
+
         Paginator::useBootstrap();
     }
 }

@@ -29,19 +29,31 @@
                         <span>Name
                             <span class="required">*</span>
                         </span>
-                        <input class="input-field" type="text" name="name" value="@isset($category){{ $category->name }}@endisset" />
+                        <div class="input-field__inner">
+                            <input class="input-field" type="text" name="name" value="{{ old('name', isset($category) ? $category->name : null) }}" />
+                            @error('name')
+                                <div class="alert-error">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </label>
 
                     <label for="code">
                         <span>Code
                             <span class="required">*</span>
                         </span>
-                        <input class="input-field" type="text" name="code" value="@isset($category){{ $category->code }}@endisset" />
+                        <div class="input-field__inner">
+                            <input class="input-field" type="text" name="code" value="@isset($category){{ $category->code }}@endisset" />
+                            @error('code')
+                            <div class="alert-error">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </label>
 
                     <label for="description">
                         <span>Description</span>
-                        <textarea name="description" class="textarea-field">@isset($category){{ $category->description }}@endisset</textarea>
+                        <div class="input-field__inner">
+                            <textarea name="description" class="textarea-field">@isset($category){{ $category->description }}@endisset</textarea>
+                        </div>
                     </label>
 
                     <label><span> </span><input type="submit" value="Save" /></label>

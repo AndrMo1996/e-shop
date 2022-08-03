@@ -53,7 +53,10 @@
                             @endforeach
                         </ul>
                     </div>
-                    <button class="product-card__btn">Купити</button>
+                    <form action={{ route('basket-add', $product) }} method="POST">
+                        <button class="product-card__btn" type="submit">Купити</button>
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>

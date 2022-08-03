@@ -54,8 +54,8 @@ Route::group([
     'prefix' => 'basket'
 ], function (){
     Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
-    Route::post('/{id}/add', 'App\Http\Controllers\BasketController@addProduct')->name('basket-add');
-    Route::post('/{id}/remove', 'App\Http\Controllers\BasketController@removeProduct')->name('basket-remove');
+    Route::post('/{product}/add', 'App\Http\Controllers\BasketController@addProduct')->name('basket-add');
+    Route::post('/{product}/remove', 'App\Http\Controllers\BasketController@removeProduct')->name('basket-remove');
     Route::get('/order/make', 'App\Http\Controllers\BasketController@order')->name('order');
     Route::post('/order/confirm', 'App\Http\Controllers\BasketController@confirmOrder')->name('confirm-order');
 });
