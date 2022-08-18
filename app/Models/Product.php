@@ -16,7 +16,8 @@ class Product extends Model
         'description',
         'image',
         'category_id',
-        'count'
+        'count',
+        'price'
     ];
 
     public function category(){
@@ -29,6 +30,10 @@ class Product extends Model
 
     public function scopeByCode($query, $code){
         return $query->where('code', $code);
+    }
+
+    public function scopeByCategory($query, $categoryId){
+        return $query->where('category_id', $categoryId);
     }
 
     public function isAvailable(){
@@ -47,6 +52,7 @@ class Product extends Model
     }
 
     public function countTotalPrice(){
+        return 25;
         if(!is_null($this->pivot->count)){
             return $this->pivot->count * $this->price;
         }

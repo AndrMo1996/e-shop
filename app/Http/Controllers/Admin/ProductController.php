@@ -50,7 +50,7 @@ class ProductController extends Controller
         }
 
         foreach ($params as $field => $value){
-            if(str_contains($field, $attributePrefix)){
+            if(str_contains($field, $attributePrefix) && !empty($value)){
                 unset($params[$field]);
                 $attributes[str_replace($attributePrefix, '', $field)] = [
                     'value' => $value
@@ -109,7 +109,7 @@ class ProductController extends Controller
         }
 
         foreach ($params as $field => $value){
-            if(str_contains($field, $attributePrefix)){
+            if(str_contains($field, $attributePrefix) && !is_null($value)){
                 unset($params[$field]);
                 $attributes[str_replace($attributePrefix, '', $field)] = [
                     'value' => $value

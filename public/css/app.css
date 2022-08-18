@@ -79,10 +79,10 @@ body{
 
 .categories:hover:after {
     transform: rotate(90deg);
-
 }
 
-.categories-list{
+.categories-list,
+.person-list{
     background: #273037;
     position: absolute;
     left: 0;
@@ -95,11 +95,29 @@ body{
     transition: .3s ease-in-out;
 }
 
+.user{
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.person-list{
+    left: -60px;
+    top: 120%;
+    z-index: 100;
+    width: 150px;
+}
+
 .navigation-bar li a:hover {
     color: #D5B45B;
 }
 
-.categories-list__item{
+.categories-list__item,
+.person-list__item{
     color: white;
     text-align: left;
     padding: 12px 15px;
@@ -107,7 +125,9 @@ body{
     border-bottom: 1px solid rgba(255,255,255,.1);
 }
 
-.navigation-bar > li:hover .categories-list {
+.navigation-bar > li:hover .categories-list,
+.user-bar > li:hover .locale-list,
+.user-bar > li:hover .person-list{
     opacity: 1;
     transform: scaleY(1);
 }
@@ -124,6 +144,35 @@ body{
     width: 25px;
     height: 25px;
     filter: invert(99%) sepia(1%) saturate(0%) hue-rotate(287deg) brightness(107%) contrast(100%);
+}
+
+.user-bar__img-lang{
+    margin-right: 25px;
+    width: 25px;
+    height: 25px;
+}
+
+.locale{
+    position: relative;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.locale-list{
+    /*background: #273037;*/
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 50;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: 0 0;
+    transition: .3s ease-in-out;
+}
+
+.locale-list__item{
+    text-align: left;
+    padding-top: 10px;
 }
 
 .basket{
@@ -504,22 +553,6 @@ li.slick-active button{
     margin-bottom: 25px;
 }
 
-.alert{
-    height: 50px;
-    padding-top: 10px;
-    font-size: 18px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.alert.success{
-    background-color: #178534;
-}
-
-.alert.error{
-    background-color: #a1251f;
-}
-
 .basket-total__btn{
     margin-left: 15px;
     padding: 15px 15px;
@@ -603,4 +636,115 @@ li.slick-active button{
 .social-list__img{
     width: 30px;
     height: 30px;
+}
+
+.alert{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    width: 100%;
+    height: fit-content;
+    padding: 7px;
+    border-radius: 5px;
+    text-align-all: center;
+}
+
+.alert.error{
+    color: rgb(185,74,72);
+    border: 1px solid rgb(238,211,215);
+    background-color: rgb(242,222,222);
+}
+
+.alert.success{
+    color: rgb(70,136,71);
+    border: 1px solid rgb(214,233,198);
+    background-color: rgb(223,240,216);
+}
+
+.order-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.order_right-side{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 3px 0 rgb(0 0 0 / 20%);
+    border-radius: 5px;
+    width: 380px;
+    height: 200px;
+}
+
+.right-side__title{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    box-shadow: 0 3px 2px -2px rgb(0 0 0 / 20%);
+}
+
+.order-images{
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.right-side__total{
+    padding: 15px;
+    box-shadow: 0 -3px 5px -5px #333;
+}
+
+.right-side__body{
+    padding: 15px;
+}
+
+.order-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.form-recipient,
+.form-address{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-top: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: -3px 3px 3px rgba(50, 50, 50, 0.25), 3px 3px 3px rgba(50, 50, 50, 0.25);
+
+}
+
+.form-title{
+    margin-top: -27px;
+    padding: 5px;
+    width: fit-content;
+    background-color: white;
+}
+
+.input-field{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.order-submit{
+    margin-top: 15px;
+    width: 500px;
+}
+
+input:invalid {
+    color: rgb(255, 114, 114);
+}
+
+.city,
+.department{
+    display: none;
+}
+
+.city.active,
+.department.active{
+    display: block;
 }

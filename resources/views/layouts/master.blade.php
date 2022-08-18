@@ -21,58 +21,91 @@
                             <h2 class="logo__text">Radio-Shop</h2>
                         </a>
                         <ul class="navigation-bar">
-                            <li class="navigation-bar__item categories">Каталог
+                            <li class="navigation-bar__item categories">{{ __('app.main.catalog') }}
                                 <ul class="categories-list">
-                                    @if(session()->has('categories'))
-                                    @foreach(session('categories') as $category)
-                                        <li class="categories-list__item">
-                                            <a href={{ route('category', $category->code) }}>
-                                                {{ $category->name }}
-                                            </a>
-                                        </li>
+                                    @isset($categories)
+                                        @foreach($categories as $category)
+                                            <li class="categories-list__item">
+                                                <a href={{ route('category', $category->code) }}>
+                                                    {{ $category->name }}
+                                                </a>
+                                            </li>
                                         @endforeach
-                                    @endif
+                                    @endisset
                                 </ul>
                             </li>
                             <li class="navigation-bar__item">
-                                <a class="navigation-bar__link" href="#">Як купити</a>
+                                <a class="navigation-bar__link" href="#">{{ __('app.main.buy') }}</a>
                             </li>
                             <li class="navigation-bar__item">
-                                <a class="navigation-bar__link" href="#">Оплата</a>
+                                <a class="navigation-bar__link" href="#">{{ __('app.main.payment') }}</a>
                             </li>
                             <li class="navigation-bar__item">
-                                <a class="navigation-bar__link" href="#">Доставка</a>
+                                <a class="navigation-bar__link" href="#">{{ __('app.main.delivery') }}</a>
                             </li>
                             <li class="navigation-bar__item">
-                                <a class="navigation-bar__link" href="#">Контакти</a>
+                                <a class="navigation-bar__link" href="#">{{ __('app.main.contacts') }}</a>
                             </li>
                         </ul>
                     </div>
                     <div class="right-bar">
                     <ul class="user-bar">
+                        <li class="user-bar__item locale">
+                            @if(!empty(App::getLocale()))
+                                <img class="user-bar__img-lang" src="/assets/img/lang/{{ App::getLocale() }}.png">
+                            @endif
+                            <ul class="locale-list">
+                                @foreach(Config::get('app.languages') as $lang)
+                                    @if($lang !== App::getLocale())
+                                        <li class="locale-list__item">
+                                            <a class="locale-list__link" href="{{ route('change.locale', $lang) }}">
+                                                <img class="user-bar__img-lang" src="/assets/img/lang/{{ $lang }}.png">
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </li>
+
                         <li class="userbar__item">
                             <a class="user-bar__link" href="#">
                                 <img class="user-bar__img" src="/assets/img/heart.svg">
                             </a>
                         </li>
-                        <li class="user-bar__item">
                             @guest
+                                <li class="user-bar__item">
                                 <a class="user-bar__link" href="{{ route('login') }}">
                                     <img class="user-bar__img" src="/assets/img/user.svg">
                                 </a>
                             @endguest
 
                             @auth
-                                <a class="user-bar__link" href="{{ route('logout-get') }}">
-                                    <img class="user-bar__img" src="/assets/img/logout.svg">
-                                </a>
+                             <li class="user-bar__item user">
+                                @strfirst(auth()->user()->name)
+                                <ul class="person-list">
+                                    <li class="person-list__item">
+                                        <a class="person-list__link" href="{{ route('logout') }}">
+                                            Профіль
+                                        </a>
+                                    </li>
+                                    <li class="person-list__item">
+                                        <a class="person-list__link" href="{{ route('logout') }}">
+                                            Мої замовлення
+                                        </a>
+                                    </li>
+                                    <li class="person-list__item">
+                                        <a class="person-list__link" href="{{ route('logout') }}">
+                                            Вийти
+                                        </a>
+                                    </li>
+                                </ul>
                             @endauth
                         </li>
                         <li class="user-bar__item">
                             <a class="user-bar__link basket" href={{ route('basket') }}>
                                 <img class="user-bar__img" src="/assets/img/basket.svg">
-                                @if(session()->has('orderProductCount') && session('orderProductCount') > 0)
-                                    <p class="basket-count">{{ session('orderProductCount') }}</p>
+                                @if(session()->has('order') && session('order')->products->count() > 0)
+                                    <p class="basket-count">{{ session('order')->products->count() }}</p>
                                 @endif
                             </a>
                         </li>
@@ -93,23 +126,23 @@
                         <h4 class="footer-item__title">Підписатися на розсилку про акції</h4>
                         <form class="footer-form">
                             <input class="footer-form__input" type="text" placeholder="Введіть ваш e-mail">
-                            <button type="submit">Підписатися</button>
+                            <button type="submit">{{ __('app.main.subscribe_btn') }}</button>
                         </form>
                     </div>
                     <div class="footer-item">
-                        <h4 class="footer-item__title">Інформація</h4>
+                        <h4 class="footer-item__title">{{ __('app.main.info') }}</h4>
                         <ul class="footer-list">
-                            <li class="footer-list__item"><a href="#">Про компанію</a></li>
-                            <li class="footer-list__item"><a href="#">Акції</a></li>
-                            <li class="footer-list__item"><a href="#">Контакти</a></li>
+                            <li class="footer-list__item"><a href="#">{{ __('app.main.about') }}</a></li>
+                            <li class="footer-list__item"><a href="#">{{ __('app.main.actions') }}</a></li>
+                            <li class="footer-list__item"><a href="#">{{ __('app.main.contacts') }}</a></li>
                         </ul>
                     </div>
                     <div class="footer-item">
-                        <h4 class="footer-item__title">Інтернет-магазин</h4>
+                        <h4 class="footer-item__title">{{ __('app.main.i_shop') }}</h4>
                         <ul class="footer-list">
-                            <li class="footer-list__item"><a href="#">Доставка</a></li>
-                            <li class="footer-list__item"><a href="#">Оплата</a></li>
-                            <li class="footer-list__item"><a href="#">Повернення та обмін</a></li>
+                            <li class="footer-list__item"><a href="#">{{ __('app.main.delivery') }}</a></li>
+                            <li class="footer-list__item"><a href="#">{{ __('app.main.payment') }}</a></li>
+                            <li class="footer-list__item"><a href="#">{{ __('app.main.returns') }}</a></li>
                         </ul>
                     </div>
                     <div class="footer-item">
@@ -144,5 +177,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
         <script type="text/javascript" src="/js/slick.min.js"></script>
         <script type="text/javascript" src="/js/main.js"></script>
+        <script type="text/javascript" src="/js/novaPoshta.js"></script>
     </body>
 </html>

@@ -4,15 +4,23 @@
 
     <div class="breadcrumbs">
         <div class="container">
+            @if(session()->has('success'))
+                <div class="alert success">{{ session()->get('success') }}</div>
+            @endif
+            @if(session()->has('error'))
+                <p class="alert error">{{ session()->get('error') }}</p>
+            @endif
+
             <ul class="breadcrumbs-list">
                 <a class="breadcrumbs-list__item" href={{ route('index') }}>
-                    Головна
+                    {{ __('app.main.main') }}
                 </a>
                 <span class="breadcrumbs-list__item">
                     {{ $category->name }}
                 </span>
             </ul>
         </div>
+
     </div>
 
     @if(count($category->products) > 0)

@@ -37,6 +37,12 @@ class AppServiceProvider extends ServiceProvider
             ?>";
         });
 
+        Blade::directive('strfirst', function($user){
+            return "<?php
+                echo mb_substr($user,0,1)
+            ?>";
+        });
+
         Paginator::useBootstrap();
     }
 }

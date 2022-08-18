@@ -22,6 +22,21 @@ Auth::routes([
 
 Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout-get');
 
+Route::get('locale/{locale}','App\Http\Controllers\MainController@changeLocale')->name('change.locale');
+Route::get('/', 'App\Http\Controllers\MainController@index')->name('index');
+Route::get('/catalog/{category}', 'App\Http\Controllers\MainController@category')->name('category');
+Route::get('/catalog/{category}/{product}', 'App\Http\Controllers\MainController@product')->name('product');
+
+Route::group([
+    'prefix' => 'basket'
+], function (){
+    Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
+    Route::post('/{product}/add', 'App\Http\Controllers\BasketController@addProduct')->name('basket-add');
+    Route::post('/{product}/remove', 'App\Http\Controllers\BasketController@removeProduct')->name('basket-remove');
+    Route::get('/order/make', 'App\Http\Controllers\BasketController@order')->name('order');
+    Route::post('/order/confirm', 'App\Http\Controllers\BasketController@confirmOrder')->name('confirm-order');
+});
+
 Route::group([
     'middleware' => 'auth',
     'prefix'     => 'admin'
@@ -46,18 +61,5 @@ Route::group([
     });
 });
 
-Route::get('/', 'App\Http\Controllers\MainController@index')->name('index');
-Route::get('/catalog/{category}', 'App\Http\Controllers\MainController@category')->name('category');
-Route::get('/catalog/{category}/{product}', 'App\Http\Controllers\MainController@product')->name('product');
-
-Route::group([
-    'prefix' => 'basket'
-], function (){
-    Route::get('/', 'App\Http\Controllers\BasketController@basket')->name('basket');
-    Route::post('/{product}/add', 'App\Http\Controllers\BasketController@addProduct')->name('basket-add');
-    Route::post('/{product}/remove', 'App\Http\Controllers\BasketController@removeProduct')->name('basket-remove');
-    Route::get('/order/make', 'App\Http\Controllers\BasketController@order')->name('order');
-    Route::post('/order/confirm', 'App\Http\Controllers\BasketController@confirmOrder')->name('confirm-order');
-});
 
 

@@ -16,19 +16,19 @@ class Basket
     public function __construct(bool $createOrder = false)
     {
         $this->order = [];
-        $orderId = session('orderId');
+        $order = session('order');
 
-        if (is_null($orderId) && $createOrder === true) {
+        if (is_null($order) && $createOrder === true) {
             $data = [];
 
             if (Auth::check()) {
                 $data['user_id'] = Auth::id();
             }
 
-            $this->order = Order::create($data);
-            session(['orderId' => $this->order->id]);
+            $this->order = new Order($data);
+            session(['order' => $this->order]);
         } else {
-            $this->order = Order::find($orderId);
+            $this->order = $order;
         }
     }
 
@@ -40,34 +40,62 @@ class Basket
         return $this->order;
     }
 
-    public function addProduct(Product $product){
-        if ($this->order->products->contains($product->id)){
-            $pivotRow = $this->order->products()->where('product_id', $product->id)->first()->pivot;
-            $pivotRow->count++;
-            $pivotRow->update();
-        } else {
-            $this->order->products()->attach($product->id);
-        }
+    public function countAvailable($updateCount = false){
+        $products = collect([]);
+        foreach ($this->order->products as $orderProduct){
+            $product = Product::find($orderProduct->id);
+            if ($orderProduct->countInOrder > $product->count){
+                return false;
+            }
 
-        session(['orderProductCount' => $this->order->products()->count()]);
-
-        return back();
-    }
-
-    public function removeProduct(Product $product){
-        if ($this->order->products->contains($product->id)) {
-            $pivotRow = $this->order->products()->where('product_id', $product->id)->first()->pivot;
-            if ($pivotRow->count < 2) {
-                $this->order->products()->detach($product->id);
-            } else {
-                $pivotRow->count--;
-                $pivotRow->update();
+            if ($updateCount) {
+                $product->count -= $orderProduct->countInOrder;
+                $products->push($product);
             }
         }
 
-        session(['orderProductCount' => $this->order->products()->count()]);
+        if ($updateCount) {
+            $products->map->save();
+        }
 
-        return redirect()->route('basket');
+        return true;
+    }
+
+    public function saveOrder($name, $phone, $email)
+    {
+        if (!$this->countAvailable(true)) {
+            return false;
+        }
+        $this->order->saveOrder($name, $phone, $email);
+//        Mail::to($email)->send(new OrderCreated($name, $this->getOrder()));
+        return true;
+    }
+
+    public function addProduct(Product $product){
+        if ($this->order->products->contains($product)){
+            $pivotRow = $this->order->products->where('id', $product->id)->first();
+            if ($pivotRow->countInOrder >= $product->count){
+                return false;
+            }
+            $pivotRow->countInOrder++;
+        } else {
+            $product->countInOrder = 1;
+            $this->order->products->push($product);
+        }
+
+        return true;
+    }
+
+    public function removeProduct(Product $product){
+        if ($this->order->products->contains($product)) {
+            $pivotRow = $this->order->products->where('id', $product->id)->first();
+            if ($pivotRow->countInOrder < 2) {
+                dd($this->order->products);
+                $this->order->products->pop($product);
+            } else {
+                $pivotRow->countInOrder--;
+            }
+        }
     }
 
 }

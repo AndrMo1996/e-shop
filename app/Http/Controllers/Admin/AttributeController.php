@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AttributeRequest;
 use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\Product;
@@ -17,8 +18,7 @@ class AttributeController extends Controller
      */
     public function index()
     {
-        $categories = Category::get();
-        return view('admin.catalog', compact('categories'));
+        //
     }
 
     /**
@@ -37,7 +37,7 @@ class AttributeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Category $category)
+    public function store(AttributeRequest $request, Category $category)
     {
         Attribute::create($request->all());
         return redirect()->route('category.show', $category);
@@ -51,7 +51,7 @@ class AttributeController extends Controller
      */
     public function show(Category $category)
     {
-        return view('admin.category', compact('category'));
+//        return view('admin.category', compact('category'));
     }
 
     /**
@@ -72,7 +72,7 @@ class AttributeController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category, Attribute $attribute)
+    public function update(AttributeRequest $request, Category $category, Attribute $attribute)
     {
         $attribute->update(Request::all());
         return redirect()->route('category.show', $category);

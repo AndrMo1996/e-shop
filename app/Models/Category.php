@@ -22,4 +22,8 @@ class Category extends Model
     public function attributes(){
         return $this->hasMany(Attribute::class);
     }
+
+    public function scopeByCode($query, $code){
+        return $query->where('code', $code);
+    }
 }

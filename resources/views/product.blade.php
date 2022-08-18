@@ -5,7 +5,7 @@
         <div class="container">
             <ul class="breadcrumbs-list">
                 <a class="breadcrumbs-list__item" href={{ route('index') }}>
-                    Головна
+                    {{ __('app.main.main') }}
                 </a>
                 <a class="breadcrumbs-list__item" href={{ route('category', $product->category->code) }}>
                     {{ $product->category->name }}
@@ -21,7 +21,7 @@
         <div class="container">
             <div class="product-card__inner">
                 <div class="product-card__img-box">
-                    <img class="product-card__img" src={{ $product->image }}>
+                    <img class="product-card__img" src={{ Storage::url($product->image) }}>
                 </div>
                 <div class="product-card__content">
                     <h1 class="product-card__title">{{ $product->name }}</h1>

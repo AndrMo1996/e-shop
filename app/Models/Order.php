@@ -11,36 +11,40 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id'
+        'user_id',
+        'total_price'
     ];
 
     public function products(){
-        return $this->belongsToMany(Product::class)->withPivot('count')->withTimestamps();
-    }
-
-    public function productsCount(){
-        return count($this->products);
+        return $this->belongsToMany(Product::class)->withPivot(['count', 'price'])->withTimestamps();
     }
 
     public function countTotalPrice(){
         $sum = 0;
 
         foreach ($this->products as $product){
-            $sum += $product->countTotalPrice();
+            $sum += $product->price * $product->countInOrder;
         }
 
         return $sum;
     }
 
-    public function saveOrder($name, $phone){
-        if ($this->status === 0) {
-            $this->name = $name;
-            $this->phone = $phone;
-            $this->status = 1;
-            $this->save();
-            session()->forget('orderId');
-            return true;
+    public function saveOrder($name, $phone, $email){
+        $this->name = $name;
+        $this->phone = $phone;
+        $this->email = $email;
+        $this->total_price = $this->countTotalPrice();
+        $this->status = 1;
+        $this->save();
+
+        foreach ($this->products as $orderProduct){
+            $this->products()->attach($orderProduct, [
+                'count' => $orderProduct->countInOrder,
+                'price' => $orderProduct->price
+            ]);
         }
-        return false;
+
+        session()->forget('order');
+        return true;
     }
 }

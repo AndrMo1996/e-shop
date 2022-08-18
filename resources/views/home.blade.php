@@ -1,14 +1,14 @@
-@extends('layouts.master', ['categories'])
+@extends('layouts.master')
 
 @section('content')
     @include('layouts.banner')
 
-    @if(count($products) > 0)
+    @if(count($popularProducts) > 4)
         <div class="popular-products__section">
             <div class="container">
                 <h2 class="popular-products__title">Популярні товари</h2>
                 <div class="popular-products__slider">
-                    @foreach($products as $product)
+                    @foreach($popularProducts as $product)
                         @include('layouts.card', ['product'])
                     @endforeach
                 </div>
@@ -22,7 +22,7 @@
                 <h2 class="about-info__title">Купити радіодеталі в Україні</h2>
 
                 <p>
-                    Крамниця радіоелектроніки К206 пропонує електронні компоненти провідних світових виробників.
+                    Крамниця радіоелектроніки Radio-Shop пропонує електронні компоненти провідних світових виробників.
                     <br>
                     <br>
                     Електронні компоненти, що поставляються нашою компанією, відрізняються високою якістю та надійністю, продукція наших постачальників пройшла випробування часом.
