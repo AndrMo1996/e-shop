@@ -112,7 +112,8 @@ body{
     width: 150px;
 }
 
-.navigation-bar li a:hover {
+.navigation-bar li a:hover,
+.user-bar li a:hover{
     color: #D5B45B;
 }
 
